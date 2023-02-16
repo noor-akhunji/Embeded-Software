@@ -1,0 +1,98 @@
+#include <iostream>
+// that provides a collection of types and functions to work with time measurement
+#include <chrono>
+#include <thread>
+// used for perform functions like arithmatic, comparision and logic 
+#include <functional>
+
+// unsigned datatypes consume less memories
+
+// Mode_1 is the normal mode for running a cycle as given in equation
+void mode_1(unsigned int puls_a, unsigned int dead_b, unsigned int npls_c, unsigned int delay_d){
+    using namespace std::chrono_literals; //used for access litral parts of chrono
+    std::cout << "Start" << (char)254u<<std::endl;
+    
+    for (int i = 0; i < npls_c; i++)
+            {
+                std::cout <<"Pulse"<< i+1;
+                std::this_thread::sleep_for(std::chrono::microseconds(puls_a));
+                unsigned int x = puls_a/50;
+                for (unsigned int y = 0; y<x; y++)
+                    {
+                        std::cout << (char)254u;
+                    }
+                std::cout << i+1 << ": Low__" << std::endl;
+                std::this_thread::sleep_for(std::chrono::microseconds(dead_b));
+                puls_a = puls_a + 50; // increase plus by 50 using loop 
+                
+            }
+            unsigned int z = delay_d/50; // 50 for is delay
+            std::cout << "End";
+            for (unsigned int z = 0; z < delay_d; z++)
+            {
+                std::cout << "_"; // "_" Represents delay time
+                
+            }
+    }
+    
+    // Mode_1 is the normal mode for running a cycle as given in equation
+    void mode_2(unsigned int puls_a, unsigned int dead_b, unsigned int npls_c, unsigned int delay_d){
+    using namespace std::chrono_literals;//used for access litral parts of chrono
+    std::cout << "Start" << (char)254u<<std::endl;
+    
+    for (int i = 0; i < npls_c; i++)
+            {
+                std::cout <<"Pulse"<< i+1;
+                std::this_thread::sleep_for(std::chrono::microseconds(puls_a));
+                unsigned int x = puls_a/50;
+                for (unsigned int y = 0; y<x; y++)
+                    {
+                        std::cout << (char)254u;
+                    }
+                std::cout << i+1 << ": Low__" << std::endl;
+                std::this_thread::sleep_for(std::chrono::microseconds(dead_b));
+                puls_a = puls_a - 50; // increase plus by 50 using loop
+
+            }
+            unsigned int z = delay_d/50; // 50 for is delay
+            std::cout << "End";
+            for (unsigned int z = 0; z < delay_d; z++)
+            {
+                std::cout << "_"; // "_" Represents delay time
+                
+            }
+    }
+    
+int main(){
+char repeat; // Repeat the code/cycle
+char choice; // Selects the Mode
+std::cout << "Select Mode: A or B" <<std::endl;
+std::cout << "A is Normal, B is modified" <<std::endl;
+std::cin >> choice; // Take choice from user
+switch (choice)
+{
+    case 'a': // if user press a then it performs mode_1
+    {
+        do
+        {
+            mode_1(100,1100,12,3000);
+            std::cout << "Press y to repeat or any other key to exit: ";
+            std::cin >> repeat;
+        }
+        while (repeat == 'y'); 
+        break;
+    }
+case 'b': // if user press a then it performs mode_2
+    {
+        do{
+            mode_2(650,1100,12,3000);
+            std::cout << "Press y to repeat or any other key to exit: ";
+            std::cin >> repeat;
+        }
+        while (repeat == 'y');
+        break;
+    }
+default:
+return 0;
+}
+}
